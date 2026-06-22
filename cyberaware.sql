@@ -45,3 +45,8 @@ CREATE TABLE quiz_questions (
 ALTER TABLE quiz_questions
 ADD COLUMN section VARCHAR(50) NOT NULL
 AFTER id;
+
+CREATE TABLE app_settings (
+        setting_key VARCHAR(100) PRIMARY KEY,
+        setting_value VARCHAR(100)
+    );
