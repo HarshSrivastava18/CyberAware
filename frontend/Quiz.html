@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberQuiz</title>
+  <style>
+    :root {
+      --bg: #fffffe;
+      --card: #afafaf;
+      --accent: #3d4f8b;
+      --dark: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(0deg, rgb(11, 22, 52), transparent);
+      color: #000;
+      min-height: 100vh;
+    }
+    ::-webkit-scrollbar { display: none; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #131c4ce6;
+      backdrop-filter: blur(10px);
+      padding: 16px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .timer {
+      font-weight: bold;
+      color: #fff;
+      font-size: 1.1rem;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 6px 18px;
+      border-radius: 20px;
+    }
+
+    .layout {
+      display: flex;
+      height: calc(100vh - 60px);
+      margin: auto;
+      padding: 20px;
+      gap: 25px;
+    }
+
+    .sidebar,
+    .main,
+    .result {
+      background: #fff;
+      border-radius: 22px;
+      border: 1px solid rgba(0, 0, 0, .08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+    }
+
+    .sidebar {
+      padding: 20px;
+      width: 220px;
+      min-width: 200px;
+      max-height: 60%;
+      overflow-y: scroll;
+      scrollbar-width: none;
+    }
+
+    .section-title {
+      color: var(--accent);
+      margin: 12px 0;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .navgrid {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(4, 1fr);
+      justify-content: center;
+    }
+
+    .qbtn {
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .qbtn:hover {
+      border-color: var(--accent);
+    }
+
+    .qbtn.active {
+      background: #3d5696c1;
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .qbtn.answered {
+      background: rgba(37, 45, 111, 0.89);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .qbtn.skipped {
+      background: grey;
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .legend {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: #555;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .main {
+      flex: 1;
+      padding: 35px;
+      overflow-y: scroll;
+      scrollbar-width: none;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .badge {
+      background: #e6ebf5d4;
+      color: var(--accent);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .progress {
+      margin: 20px 0;
+    }
+
+    .progress-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .bar {
+      height: 12px;
+      background: #eee;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #000);
+      border-radius: 30px;
+      transition: width 0.4s ease;
+    }
+
+    .question {
+      font-size: 1.4rem;
+      margin: 25px 0 10px;
+      line-height: 1.5;
+      color: #111;
+    }
+
+    .q-number {
+      font-size: 0.8rem;
+      color: #999;
+      margin-bottom: 4px;
+    }
+
+    .option {
+      display: block;
+      padding: 16px 18px;
+      border: 1.5px solid #ddd;
+      border-radius: 14px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+      background: #fff;
+      text-align: left;
+      width: 100%;
+    }
+
+    .option:hover {
+      border-color: var(--accent);
+      background: #f0f4ff;
+    }
+
+    .option.selected {
+      border-color: var(--accent);
+      background: #e6ebf5d4;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .option.correct {
+      border-color: #2e7d32;
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    .option.wrong {
+      border-color: #c62828;
+      background: #ffebee;
+      color: #b71c1c;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 25px;
+      justify-items: center;
+    }
+
+    button {
+      padding: 13px 24px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .prev,
+    .next {
+      background: #d0dfefbc;
+      color: #333;
+    }
+
+    .skip {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .finish {
+      background: #00006ff6;
+      color: white;
+    }
+
+    .finish-btn {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+      width: 100%;
+    }
+
+    /* Result panel */
+    .result {
+      display: none;
+      max-width: 900px;
+      width: 90%;
+      margin: 30px auto;
+      padding: 40px;
+      text-align: center;
+      overflow-y: auto;
+      max-height: calc(100vh - 100px);
+    }
+
+    .result h2 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .result p.sub {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .circle {
+      width: 180px;
+      height: 180px;
+      border: 10px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 20px auto;
+      color: var(--accent);
+    }
+
+    .stats {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .stat {
+      padding: 20px;
+      background: #e6ebf5d4;
+      border-radius: 16px;
+      min-width: 150px;
+    }
+
+    .stat .stat-val {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat .stat-label {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .review-list {
+      text-align: left;
+      margin-top: 28px;
+    }
+
+    .review-list h3 {
+      color: var(--accent);
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+
+    .review-item {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      background: #fafafa;
+    }
+
+    .review-item .rq {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    .review-item .ra {
+      font-size: 0.85rem;
+    }
+
+    .review-item .ra.correct-a {
+      color: #2e7d32;
+    }
+
+    .review-item .ra.wrong-a {
+      color: #c62828;
+    }
+
+    .restart-btn {
+      margin-top: 20px;
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 14px;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 740px) {
+      body {
+        overflow: auto;
+      }
+
+      .layout {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+        padding: 12px;
+        gap: 14px;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-width: unset;
+        max-height: 180px;
+      }
+
+      .main {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <span class="logo">🛡️ CyberQuiz</span>
+    <span class="timer" id="timer">⏱ 20:00</span>
+  </nav>
+
+  <!-- Quiz layout -->
+  <div class="layout" id="quizLayout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="section-title">Questions</div>
+      <div class="navgrid" id="navGrid"></div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#3d5696c1"></div> Current
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:rgba(37,45,111,0.89)"></div> Answered
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:grey"></div> Skipped
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#eee; border:1px solid #ccc"></div> Not visited
+        </div>
+      </div>
+    </div>
+
+    <!-- Main panel -->
+    <div class="main">
+      <div class="meta">
+        <span class="badge" id="secBadge">Section</span>
+        <span class="badge" id="catBadge">Category</span>
+        <span class="badge" id="diffBadge">Difficulty</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress-label" id="progressLabel">Question 1 of 10</div>
+        <div class="bar">
+          <div class="fill" id="fill"></div>
+        </div>
+      </div>
+
+      <div class="q-number" id="qNumber">Q1</div>
+      <div class="question" id="questionText">Loading...</div>
+
+      <div id="optionsContainer"></div>
+
+      <div class="actions">
+        <button class="prev" onclick="navigate(-1)">← Prev</button>
+        <button class="skip" onclick="skipQuestion()">Skip</button>
+        <button class="next" onclick="navigate(1)">Next →</button>
+      </div>
+
+      <div class="finish-btn">
+        <button class="finish" onclick="finishQuiz()">Finish Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result panel -->
+  <div class="result" id="resultPanel">
+    <h2>Quiz Complete! 🎉</h2>
+    <p class="sub" id="resultSub">Here's how you did</p>
+    <div class="circle" id="scoreCircle">0%</div>
+    <div class="stats" id="statsRow"></div>
+    <div class="review-list">
+      <h3>📋 Review Answers</h3>
+      <div id="reviewItems"></div>
+    </div>
+    <button class="restart-btn" onclick="restartQuiz()">🔄 Restart Quiz</button>
+  </div>
+
+  <script src="js/quiz.js"></script>
+</body>
+
+</html>

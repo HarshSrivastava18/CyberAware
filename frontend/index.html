@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberAware | Cyber Security Awareness Portal</title>
+    <meta name="description"
+        content="Empower yourself and your organization with modern cyber security awareness training. Learn how to prevent phishing, malware, ransomware, and social engineering.">
+    <meta name="keywords"
+        content="cyber security, security awareness, phishing, malware, ransomware, MFA, MFA security, threat training">
+    <meta name="author" content="CyberAware Team">
+    <link rel="stylesheet" href="css\style.css">
+</head>
+
+<body>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="custom-navbar" id="customNavbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="index.html" id="navBrand">
+                <div class="navbar-logo-wrapper">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3zm0 6c1.66 0 3 1.34 3 3 0 1.09-.59 2.04-1.47 2.56L15 17h-6l1.47-3.44C9.59 13.04 9 12.09 9 11c0-1.66 1.34-3 3-3z" />
+                    </svg>
+                </div>
+                <span class="navbar-title">CyberAware</span>
+            </a>
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a class="navbar-link" href="index.html">Home</a></li>
+                <li><a class="navbar-link" href="#">About</a></li>
+                <li><a class="navbar-link" href="#threats">Common Threats</a></li>
+                <li><a class="navbar-link" href="#tips">Tips</a></li>
+                <li><a class="navbar-link" href="#modules">Training Modules</a></li>
+                <div class="navbar-actions">
+
+                    <div id="guestPanel">
+                        <a class="btn-login" href="#" id="navLoginBtn">Login</a>
+                        <a class="btn-signup" href="#" id="navSignupBtn">Sign Up</a>
+                    </div>
+
+                    <div id="userPanel" class="user-panel" style="display:none;">
+                        <div class="user-avatar">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
+                            </svg>
+                        </div>
+
+                        <span id="userName" class="user-name"></span>
+
+                        <button class="logout-btn" onclick="logout()">
+                            Logout
+                        </button>
+                    </div>
+
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+    <header class="hero reveal">
+        <!-- Background photo overlay -->
+        <div class="hero-bg-img"></div>
+
+        <div class="hero-content">
+            <div class="hero-text-area">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>Cyber Security Awareness Platform
+                </div>
+                <h1>Cyber Security Starts With Awareness</h1>
+                <p>Equip yourself and your organization with the skills needed to detect, prevent, and respond to modern
+                    cyber threats including phishing, malware, and social engineering.</p>
+                <div class="hero-buttons">
+                    <a href="#modules" class="btn-cyber-primary" id="heroStartBtn">
+                        Start Learning
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    <a href="#" class="btn-cyber-outline" id="assessmentBtn">
+                        Take Assessment
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual-area">
+                <div class="cyber-graphic-container">
+                    <div class="cyber-graphic-bg"></div>
+                    <svg class="cyber-shield-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                        <defs>
+                            <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0A192F" />
+                                <stop offset="100%" stop-color="#64B5F6" />
+                            </linearGradient>
+
+                            <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="8" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+
+                        <path d="M100 20 L40 45 V100 C40 145 68 180 100 190 C132 180 160 145 160 100 V45 L100 20 Z"
+                            fill="url(#shieldGrad)" fill-opacity="0.12" stroke="url(#shieldGrad)" stroke-width="4"
+                            filter="url(#neonGlow)" />
+
+                        <path d="M70 75 H130 M60 100 H140 M70 125 H130 M100 50 V170" stroke="#64B5F6" stroke-width="1.5"
+                            stroke-opacity="0.35" />
+
+                        <rect x="85" y="95" width="30" height="25" rx="3" fill="#112240" stroke="#64B5F6"
+                            stroke-width="2" />
+
+                        <path d="M91 95 V88 A9 9 0 0 1 109 88 V95" stroke="#64B5F6" stroke-width="2" fill="none" />
+
+                        <circle cx="100" cy="107" r="2.5" fill="#64B5F6" />
+
+                        <circle cx="100" cy="100" r="85" stroke="#64B5F6" stroke-width="1" stroke-dasharray="10 15"
+                            stroke-opacity="0.5" />
+
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= STATS SECTION (DARK) ================= -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">By The Numbers</span>
+                <h2 class="section-title">The Global Cyber Threat Reality</h2>
+                <p class="section-desc">Every second, organizations and individuals face relentless attacks. These
+                    numbers show exactly why awareness training is non-negotiable.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card reveal-scale">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="stat-number counter" data-target="95">0</span><span class="stat-suffix">%</span>
+                    </div>
+                    <p>Of all data breaches involve human error as the root cause</p>
+                </div>
+                <div class="stat-card reveal-scale">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="stat-number">3</span><span class="stat-suffix">B+</span>
+                    </div>
+                    <p>Phishing emails sent globally every single day</p>
+                </div>
+                <div class="stat-card reveal-scale">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="stat-number">$4</span><span class="stat-suffix">M</span>
+                    </div>
+                    <p>Average cost (USD) of a single data breach in 2024</p>
+                </div>
+                <div class="stat-card reveal-scale">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="stat-number counter" data-target="39">0</span><span class="stat-suffix">s</span>
+                    </div>
+                    <p>A new cyberattack happens every 39 seconds worldwide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WHY CYBER SECURITY ================= -->
+    <section class="section-padding" id="about">
+        <div class="security-bg-img"></div>
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-graphics reveal-left">
+                    <div class="radar-container">
+                        <div class="radar-sweep"></div>
+                        <div class="radar-circle-2"></div>
+                        <div class="radar-circle-3"></div>
+                        <div class="radar-core">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B6B3D"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content reveal-right">
+                    <span class="section-tag">Defense Strategy</span>
+                    <h3>Why Cyber Security Matters</h3>
+                    <p>Cyber threats are evolving at a breakneck pace. The vast majority of successful breaches occur
+                        not due to hardware failures, but because individuals are targeted through phishing, social
+                        engineering, or weak personal credentials.</p>
+                    <p>Comprehensive security awareness training empowers you to recognize threat indicators, protect
+                        sensitive credentials, and build solid cyber defense habits.</p>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                </svg>
+                            </span>
+                            <span class="benefit-text">Recognize phishing templates and red flags instantly.</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                </svg>
+                            </span>
+                            <span class="benefit-text">Establish robust, attack-resilient passwords and MFA
+                                frameworks.</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                </svg>
+                            </span>
+                            <span class="benefit-text">Protect organization networks from malware and ransomware
+                                hooks.</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                                </svg>
+                            </span>
+                            <span class="benefit-text">Respond confidently and swiftly to live security
+                                incidents.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Our Approach</span>
+                <h2 class="section-title">How CyberAware Works</h2>
+                <p class="section-desc">A structured, progressive learning path that takes you from security novice to
+                    confident digital defender in just a few focused hours.</p>
+            </div>
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card reveal-scale">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+                        </svg>
+                    </div>
+                    <h3>Watch & Read</h3>
+                    <p>Explore curated video lessons and expert-written guides covering every major cyber threat
+                        category. Learn at your own pace, on any device.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="step-card reveal-scale">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                        </svg>
+                    </div>
+                    <h3>Practice & Simulate</h3>
+                    <p>Complete interactive quizzes and simulated phishing scenarios to test your knowledge in
+                        real-world conditions with zero real risk.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-card reveal-scale">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                        </svg>
+                    </div>
+                    <h3>Earn Certification</h3>
+                    <p>Score above the threshold on our final assessment to earn a verified CyberAware certificate —
+                        recognized proof of your security competency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= COMMON THREATS ================= -->
+    <section class="section-padding" id="threats">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Active Threat Landscape</span>
+                <h2 class="section-title">Common Cyber Threats</h2>
+                <p class="section-desc">Understanding how attackers target your digital presence is the first step
+                    toward effective defense. Hover each card to learn more.</p>
+            </div>
+            <div class="threats-grid">
+                <!-- Phishing Card -->
+                <div class="threat-card threat-phishing reveal-scale" id="threatPhishing">
+                    <h3>Phishing</h3>
+                    <p>Deceptive emails, messages, and mock landing pages crafted to bait credentials, financial data,
+                        or sensitive network access tokens.</p>
+                </div>
+                <!-- Malware Card -->
+                <div class="threat-card threat-malware reveal-scale" id="threatMalware">
+                    <h3>Malware</h3>
+                    <p>Malicious scripts or applications engineered to infiltrate host computers, harvest secure
+                        information, or disrupt operations silently inside host computers.</p>
+                </div>
+                <!-- Ransomware Card -->
+                <div class="threat-card threat-ransomware reveal-scale" id="threatRansomware">
+                    <h3>Ransomware</h3>
+                    <p>High-grade encryption malware that locks down local databases and folders, demanding ransom
+                        payouts in exchange for decryption keys.</p>
+                </div>
+                <!-- Social Engineering Card -->
+                <div class="threat-card threat-social reveal-scale">
+                    <h3>Social Engineering</h3>
+                    <p>Psychological manipulation tactics that exploit human trust, urgency, or fear to extract
+                        confidential information or authorize fraudulent transfers.</p>
+                </div>
+                <!-- Password Attacks Card -->
+                <div class="threat-card threat-password reveal-scale">
+                    <h3>Password Attacks</h3>
+                    <p>Brute-force, dictionary, and credential-stuffing attacks that systematically test password
+                        combinations to compromise accounts at scale.</p>
+                </div>
+                <!-- Outdated Software Card -->
+                <div class="threat-card threat-software reveal-scale">
+                    <h3>Unpatched Systems</h3>
+                    <p>Exploiting known vulnerabilities in outdated operating systems, browsers, and applications — a
+                        primary vector for zero-day attacks and worm propagation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECURITY TIPS SLIDER ================= -->
+    <section class="section-padding" id="tips">
+        <div class="tips-bg-img"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Best Practices</span>
+                <h2 class="section-title">Critical Security Tips</h2>
+                <p class="section-desc">Interactive, everyday habits to significantly fortify your personal and work
+                    environments.</p>
+            </div>
+            <div class="carousel-container reveal">
+                <button class="carousel-btn carousel-btn-prev" id="carouselPrev"
+                    aria-label="Previous Tip">&larr;</button>
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Slide 1: Passwords -->
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <h3>01 / Use Strong Passwords</h3>
+                            <p>Avoid simplistic names or dictionary terms. Use lengthy combinations containing uppercase
+                                and lowercase characters, numbers, and symbols. Manage credentials with an encrypted
+                                password manager.</p>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/password-security.png" alt="Strong Password Security">
+                        </div>
+                    </div>
+                    <!-- Slide 2: MFA -->
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <h3>02 / Enable Multi-Factor Authentication</h3>
+                            <p>Configure authenticator apps or security keys wherever supported. Multi-factor
+                                authentication adds a verification wall, blocking intrusion even if an attacker leaks
+                                your password.</p>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/mfa-security.png" alt="Multi Factor Authentication">
+                        </div>
+                    </div>
+                    <!-- Slide 3: Phishing Awareness -->
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <h3>03 / Think Before You Click</h3>
+                            <p>Examine links and attachments with scrutiny. Check the sender's domain closely.
+                                Cybercriminals excel at impersonating trusted managers, vendors, or banking portals.</p>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/phishing-awarness.png" alt="Phishing Awareness">
+                        </div>
+                    </div>
+                    <!-- Slide 4: Updates -->
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <h3>04 / Keep Software Updated</h3>
+                            <p>Regularly apply operating system patches, application upgrades, and browser definitions.
+                                Outdated systems contain discovered gaps that hackers scan for continuously.</p>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/software-update.png" alt="Software Updates">
+                        </div>
+                    </div>
+                    <!-- Slide 5: Backups -->
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <h3>05 / Backup Your Data Regularly</h3>
+                            <p>Follow the 3-2-1 backup rule: 3 copies of your data, on 2 different media types, with
+                                1 stored offsite or in the cloud. Backups are your last line of defence against
+                                ransomware.</p>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/malware.png" alt="Data Backup Security">
+                        </div>
+                    </div>
+                    <!-- Slide 6: Public Wi-Fi -->
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <h3>06 / Avoid Public Wi-Fi for Sensitive Work</h3>
+                            <p>Public hotspots are hunting grounds for man-in-the-middle attacks. Use a trusted VPN
+                                whenever connecting to untrusted networks to encrypt your traffic end-to-end.</p>
+                        </div>
+                        <div class="slide-image">
+                            <img src="images/ransomware.png" alt="Public Wi-Fi Security">
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="Next Tip">&rarr;</button>
+                <div class="carousel-indicators" id="carouselIndicators"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= VIDEO SECTION ================= -->
+    <section class="video-section" id="videos">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Watch & Learn</span>
+                <h2 class="section-title">Cybersecurity Video Library</h2>
+                <p class="section-desc">Expert-curated videos that break down complex threats into actionable,
+                    easy-to-understand lessons for every skill level.</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card reveal-left">
+                    <iframe src="https://www.youtube.com/embed/inWWhr5tnEA" title="Introduction to Cyber Security"
+                        allowfullscreen loading="lazy">
+                    </iframe>
+                    <div class="video-card-info">
+                        <span class="video-tag">Fundamentals</span>
+                        <h3>Introduction to Cyber Security</h3>
+                        <p>A comprehensive overview of the cybersecurity landscape — covering the CIA Triad, common
+                            attack vectors, and foundational defense strategies.</p>
+                    </div>
+                </div>
+                <div class="video-card reveal-right">
+                    <iframe src="https://www.youtube.com/embed/XBkzBrXlle0" title="Phishing Awareness Training"
+                        allowfullscreen loading="lazy">
+                    </iframe>
+                    <div class="video-card-info">
+                        <span class="video-tag">Attacks & Threats</span>
+                        <h3>Phishing Awareness Training</h3>
+                        <p>Learn to spot phishing emails, fake websites, and social engineering attacks before they
+                            steal your credentials or compromise your organization.</p>
+                    </div>
+                </div>
+                <div class="video-card reveal-left">
+                    <iframe src="https://www.youtube.com/embed/-KL9APUjj3E" title="How Ransomware Works" allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                    <div class="video-card-info">
+                        <span class="video-tag">Ransomware</span>
+                        <h3>How Ransomware Attacks Work</h3>
+                        <p>A technical deep-dive into how ransomware infiltrates networks, encrypts files, and demands
+                            payment — and the exact steps to defend against it.</p>
+                    </div>
+                </div>
+                <div class="video-card reveal-right">
+                    <iframe src="https://www.youtube.com/embed/HczgepjwEu4" title="Password Security & MFA"
+                        allowfullscreen loading="lazy">
+                    </iframe>
+                    <div class="video-card-info">
+                        <span class="video-tag">Safe Habits</span>
+                        <h3>Password Security & MFA Best Practices</h3>
+                        <p>Master password hygiene, password managers, and multi-factor authentication to make your
+                            accounts virtually impenetrable to attackers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= RECENT THREAT INTELLIGENCE ================= -->
+    <section class="threat-intel-section section-padding" id="intel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Threat Intelligence</span>
+                <h2 class="section-title">Notable Cyber Incidents</h2>
+                <p class="section-desc">Real-world breach case studies that demonstrate why every individual and
+                    organization must prioritize security awareness.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                        </svg>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-year">2024 — Healthcare Sector</div>
+                        <h4>Change Healthcare Ransomware Attack</h4>
+                        <p>A ransomware attack on Change Healthcare disrupted payments for hospitals across the US for
+                            weeks, affecting over 100 million patient records and costing an estimated $872 million in
+                            direct losses. The attackers gained entry through stolen credentials with no MFA configured.
+                        </p>
+                        <span class="timeline-badge critical">Critical · Ransomware · 100M+ Records</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-year">2023 — Financial Sector</div>
+                        <h4>MGM Resorts Social Engineering Attack</h4>
+                        <p>Attackers spent just 10 minutes on LinkedIn gathering employee information, then called the
+                            IT helpdesk impersonating a staff member. The entire attack — which cost MGM $100M+ — began
+                            with a single convincing phone call. Classic social engineering.</p>
+                        <span class="timeline-badge">High · Social Engineering · $100M+ Loss</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+                        </svg>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-year">2023 — Cloud Infrastructure</div>
+                        <h4>MOVEit Supply Chain Vulnerability</h4>
+                        <p>A critical zero-day vulnerability in MOVEit file transfer software was exploited across
+                            thousands of organizations globally, exposing data from government agencies, banks, and
+                            universities. Patching delays were the primary reason so many were affected.</p>
+                        <span class="timeline-badge critical">Critical · Zero-Day · 2,000+ Organizations</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                        </svg>
+                    </div>
+                    <div class="timeline-body">
+                        <div class="timeline-year">2022 — Cryptocurrency</div>
+                        <h4>Ronin Network Bridge Hack</h4>
+                        <p>Hackers compromised 5 of the 9 validator nodes for the Ronin Network via a targeted
+                            spear-phishing campaign against its developers, stealing $625 million in crypto assets. The
+                            attack went undetected for 6 days.</p>
+                        <span class="timeline-badge critical">Critical · Spear Phishing · $625M Stolen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MODULES SECTION ================= -->
+    <section class="section-padding" id="modules">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Learning Modules</span>
+                <h2 class="section-title">Security Awareness Modules</h2>
+                <p class="section-desc">Progressive courses structured to cultivate security mindfulness from
+                    foundational concepts to advanced response.</p>
+            </div>
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All Modules</button>
+                <button class="filter-btn" data-filter="basics">Fundamentals</button>
+                <button class="filter-btn" data-filter="threats">Attacks & Threats</button>
+                <button class="filter-btn" data-filter="habits">Safe Habits</button>
+                <button class="filter-btn" data-filter="ops">Incident Ops</button>
+            </div>
+            <div class="modules-grid" id="modulesGrid">
+
+                <!-- Module 1: Intro -->
+                <div class="module-card reveal-scale" data-category="basics" data-title="Introduction to Cyber Security"
+                    data-duration="15 Minutes" data-level="Beginner"
+                    data-description="Master core terminology, study key principles of cybersecurity, understand the CIA Triad, and learn how organizations protect digital assets."
+                    data-objectives="Understand Cyber Security Fundamentals|Learn the CIA Triad|Identify Common Cyber Threats|Understand Risk Management Basics|Explore Career Paths in Cyber Security"
+                    data-video="https://www.youtube.com/embed/inWWhr5tnEA">
+                    <img src="images/malware.png" alt="Cyber Security Introduction" class="module-img">
+                    <div class="module-content-inner">
+                        <div class="module-meta">
+                            <span class="module-tag">Fundamentals</span>
+                            <span class="module-difficulty">Beginner</span>
+                        </div>
+                        <div class="module-title">
+                            <h3>Introduction to Cyber Security</h3>
+                        </div>
+                        <p class="module-desc">Master core terminology, study key principles (CIA Triad), and explore
+                            the importance of protecting personal and enterprise assets.</p>
+                    </div>
+                    <div class="module-footer">
+                        <span class="module-duration">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            15 mins
+                        </span>
+                        <a class="module-link">Explore
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Module 2: Phishing -->
+                <div class="module-card reveal-scale" data-category="threats" data-title="Phishing Awareness"
+                    data-duration="25 Minutes" data-level="Beginner"
+                    data-description="Learn how cybercriminals use phishing emails, fake websites, and social engineering techniques to steal credentials and sensitive information."
+                    data-objectives="Identify phishing emails|Recognize fake websites|Understand social engineering tactics|Analyze phishing indicators|Protect against phishing attacks"
+                    data-video="https://www.youtube.com/embed/XBkzBrXlle0">
+                    <img src="images/phishing.png" alt="Phishing Awareness" class="module-img">
+                    <div class="module-content-inner">
+                        <div class="module-meta">
+                            <span class="module-tag">Attacks & Threats</span>
+                            <span class="module-difficulty">Beginner</span>
+                        </div>
+                        <div class="module-title">
+                            <h3>Phishing Awareness</h3>
+                        </div>
+                        <p class="module-desc">Identify phishing emails, fake login pages, and social engineering scams
+                            before they steal your credentials or compromise your organization.</p>
+                    </div>
+                    <div class="module-footer">
+                        <span class="module-duration">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            25 mins
+                        </span>
+                        <a class="module-link">Explore
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Module 3: Malware -->
+                <div class="module-card reveal-scale" data-category="threats" data-title="Malware & Ransomware Defense"
+                    data-duration="30 Minutes" data-level="Intermediate"
+                    data-description="Understand how malware and ransomware operate, how they spread, and the exact steps to protect your systems and respond when infected."
+                    data-objectives="Understand malware types|Recognize ransomware indicators|Implement endpoint protection|Create backup strategies|Respond to malware infections"
+                    data-video="https://www.youtube.com/embed/aEmXiDMgTWQ">
+                    <img src="images/malware1.png" alt="Malware Defense" class="module-img">
+                    <div class="module-content-inner">
+                        <div class="module-meta">
+                            <span class="module-tag">Attacks & Threats</span>
+                            <span class="module-difficulty">Intermediate</span>
+                        </div>
+                        <div class="module-title">
+                            <h3>Malware & Ransomware Defense</h3>
+                        </div>
+                        <p class="module-desc">Detect malware behaviors, understand ransomware encryption mechanics, and
+                            deploy layered protection strategies before an attack strikes.</p>
+                    </div>
+                    <div class="module-footer">
+                        <span class="module-duration">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            30 mins
+                        </span>
+                        <a class="module-link">Explore
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Module 4: Password Security -->
+                <div class="module-card reveal-scale" data-category="habits" data-title="Password Security & MFA"
+                    data-duration="20 Minutes" data-level="Beginner"
+                    data-description="Build unbreakable password habits, set up multi-factor authentication, and use password managers to secure every account."
+                    data-objectives="Create strong passwords|Set up MFA on key accounts|Use a password manager|Avoid credential reuse|Recognize credential stuffing attacks"
+                    data-video="https://www.youtube.com/embed/wW_6iZHMNR8">
+                    <img src="images/mfa-security.png" alt="Password Security" class="module-img">
+                    <div class="module-content-inner">
+                        <div class="module-meta">
+                            <span class="module-tag">Safe Habits</span>
+                            <span class="module-difficulty">Beginner</span>
+                        </div>
+                        <div class="module-title">
+                            <h3>Password Security & MFA</h3>
+                        </div>
+                        <p class="module-desc">Master password hygiene, set up multi-factor authentication, and use a
+                            password manager to secure every single account you own.</p>
+                    </div>
+                    <div class="module-footer">
+                        <span class="module-duration">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            20 mins
+                        </span>
+                        <a  class="module-link">Explore
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Module 5: Social Engineering -->
+                <div class="module-card reveal-scale" data-category="threats" data-title="Social Engineering Tactics"
+                    data-duration="25 Minutes" data-level="Intermediate"
+                    data-description="Recognize and resist manipulation tactics including pretexting, baiting, vishing, and CEO fraud that attackers use to bypass technical defenses."
+                    data-objectives="Identify social engineering types|Resist manipulation attempts|Verify unusual requests|Report suspicious contacts|Protect organizational data"
+                    data-video="https://www.youtube.com/embed/lc7scxvKQOo">
+                    <img src="images/phishing1.png" alt="Social Engineering" class="module-img">
+                    <div class="module-content-inner">
+                        <div class="module-meta">
+                            <span class="module-tag">Attacks & Threats</span>
+                            <span class="module-difficulty">Intermediate</span>
+                        </div>
+                        <div class="module-title">
+                            <h3>Social Engineering Tactics</h3>
+                        </div>
+                        <p class="module-desc">Learn the psychological tricks attackers use — impersonation, pretexting,
+                            urgency — and how to resist them without feeling paranoid.</p>
+                    </div>
+                    <div class="module-footer">
+                        <span class="module-duration">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            25 mins
+                        </span>
+                        <a class="module-link">Explore
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Module 6: Safe Browsing -->
+                <div class="module-card reveal-scale" data-category="habits" data-title="Safe Browsing & Device Hygiene"
+                    data-duration="20 Minutes" data-level="Beginner"
+                    data-description="Establish secure browsing habits, understand HTTPS, use VPNs correctly, and keep all devices patched and protected."
+                    data-objectives="Browse securely with HTTPS|Use a VPN safely|Recognize malicious URLs|Keep software updated|Manage browser extensions safely"
+                    data-video="https://www.youtube.com/embed/inWWhr5tnEA">
+                    <img src="images/software-update.png" alt="Safe Browsing" class="module-img">
+                    <div class="module-content-inner">
+                        <div class="module-meta">
+                            <span class="module-tag">Safe Habits</span>
+                            <span class="module-difficulty">Beginner</span>
+                        </div>
+                        <div class="module-title">
+                            <h3>Safe Browsing & Device Hygiene</h3>
+                        </div>
+                        <p class="module-desc">Build daily habits that close the gaps attackers exploit: secure
+                            browsing, timely updates, VPN use, and recognizing dangerous URLs.</p>
+                    </div>
+                    <div class="module-footer">
+                        <span class="module-duration">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            20 mins
+                        </span>
+                        <a class="module-link">Explore
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Module 7: Ransomware -->
+                <div class="module-card reveal-scale" data-category="threats" data-title="Ransomware Response Plan"
+                    data-duration="30 Minutes" data-level="Advanced"
+                    data-description="Build a complete ransomware incident response plan — from the moment of detection through containment, recovery, and post-incident review."
+                    data-objectives="Detect ransomware early|Isolate infected systems|Restore from clean backups|Communicate during incidents|Conduct post-incident reviews"
+                    data-video="https://www.youtube.com/embed/aEmXiDMgTWQ">
+                    <img src="images/ransomware.png" alt="Ransomware Response" class="module-img">
+                    <div class="module-content-inner">
+                        <div class="module-meta">
+                            <span class="module-tag">Attacks & Threats</span>
+                            <span class="module-difficulty">Advanced</span>
+                        </div>
+                        <div class="module-title">
+                            <h3>Ransomware Response Plan</h3>
+                        </div>
+                        <p class="module-desc">Learn to detect, isolate, and recover from ransomware attacks. Build a
+                            battle-tested incident response plan before you ever need it.</p>
+                    </div>
+                    <div class="module-footer">
+                        <span class="module-duration">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            30 mins
+                        </span>
+                        <a class="module-link">Explore
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Module 8: Incident Response -->
+                <div class="module-card reveal-scale" data-category="ops" data-title="Incident Response & Reporting"
+                    data-duration="30 Minutes" data-level="Advanced"
+                    data-description="Analyze compromised systems, learn escalation pathways, collect evidence logs, and report issues quickly to security teams."
+                    data-objectives="Identify breach indicators|Follow incident escalation paths|Preserve forensic evidence|Report incidents correctly|Conduct post-incident reviews"
+                    data-video="https://www.youtube.com/embed/inWWhr5tnEA">
+                    <img src="images/ransomware1.png" alt="Incident Response" class="module-img">
+                    <div class="module-content-inner">
+                        <div class="module-meta">
+                            <span class="module-tag">Incident Ops</span>
+                            <span class="module-difficulty">Advanced</span>
+                        </div>
+                        <div class="module-title">
+                            <h3>Incident Response & Reporting</h3>
+                        </div>
+                        <p class="module-desc">Analyze compromised metrics, learn escalation pathways, collect evidence
+                            logs, and report issues quickly to security teams.</p>
+                    </div>
+                    <div class="module-footer">
+                        <span class="module-duration">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                            </svg>
+                            30 mins
+                        </span>
+                        <a  class="module-link">Explore
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CTA ===========
+    <section class="cta-section" id="register">
+
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2>Ready to Improve Your Cyber Security Skills?</h2>
+                <p>Join the CyberAware training portal today. Complete challenges, track learning modules, and earn
+                    security certifications.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-cta-outline" id="assessmentBtn1">
+                        Start Quiz
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>====== -->
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="reveal">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-title">
+                        <div class="navbar-logo-wrapper" style="width: 34px; height: 34px;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3zm0 6c1.66 0 3 1.34 3 3 0 1.09-.59 2.04-1.47 2.56L15 17h-6l1.47-3.44C9.59 13.04 9 12.09 9 11c0-1.66 1.34-3 3-3z" />
+                            </svg>
+                        </div>
+                        <span id="title-logo" style="font-size: 1.2rem;">
+                            <p>CyberAware</p>
+                        </span>
+                    </div>
+                    <p class="footer-desc">Building resilient digital environments through engaging and effective
+                        user-level security training modules.</p>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a class="footer-link" href="#">About Us</a></li>
+                        <li><a class="footer-link" href="#threats">Threat Landscape</a></li>
+                        <li><a class="footer-link" href="#tips">Security Tips</a></li>
+                        <li><a class="footer-link" href="#modules">Learning Modules</a></li>
+                        <li><a class="footer-link" href="#videos">Video Library</a></li>
+                        <li><a class="footer-link" href="#intel">Threat Intelligence</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a class="footer-link" id="adminPortal" href="admin-login.html">Admin Portal</a></li> 
+                        <li><a class="footer-link" id="accessPortal" href="#">Access Portal</a></li>     
+                        <li><a class="footer-link" id="createAccountLink" href="#">Create Account</a></li>
+                        <li><a class="footer-link" href="#"id="Assessments">Assessments</a></li>
+                        <li><a class="footer-link" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Get in Touch</h4>
+                    <ul class="footer-links">
+                        <li><span class="footer-link">support@cyberaware.portal</span></li>
+                        <li><span class="footer-link">Incident hotline: +91-123456789</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 CyberAware.</span>
+                <div class="footer-socials">
+                    <a class="social-icon" href="#" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="#" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                    </a>
+                    <a class="social-icon" href="#" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+
+    <!-- ========== MODULE DETAILS MODAL ========== -->
+    <div class="module-modal" id="moduleModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    <!--==login signup==-->
+    <div class="auth-modal" id="authModal">
+
+        <div class="auth-box">
+
+            <span class="close-modal">&times;</span>
+
+            <form id="loginForm" class="form-container">
+                <h2>Login</h2>
+
+                <input type="email" id="loginEmail" placeholder="Email Address">
+                <input type="password" id="loginPassword" placeholder="Password">
+
+                <button type="submit" id="loginBtn" class="submitBtn">
+                    Login
+                </button>
+
+                <p>
+                    Don't have an account?
+                    <a href="#" id="showSignup">Sign Up</a>
+                </p>
+            </form>
+
+            <form id="signupForm" class="form-container hidden">
+                <h2>Create Account</h2>
+
+                <input type="text" id="name" placeholder="Full Name">
+                <input type="email" id="email" placeholder="Email Address">
+                <input type="password" id="password" placeholder="Password">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                <button type="submit" id="signupBtn" class="submitBtn">
+                    Create Account
+                </button>
+
+                <p>
+                    Already have an account?
+                    <a href="#" id="showLogin">Login</a>
+                </p>
+            </form>
+
+        </div>
+
+    </div>
+
+    <div id="toast" class="toast">
+
+    </div>
+
+    <!-- ========== ENHANCED APP SCRIPT ========== -->
+    <script>
+        // Timeline observer (in addition to the existing app.js observers)
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const tlObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('active'), i * 150);
+                    tlObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        timelineItems.forEach(item => tlObserver.observe(item));
+    </script>
+    <script src="js\signup.js"></script>
+    <script src="js\login.js"></script>
+</body>
+
+</html>

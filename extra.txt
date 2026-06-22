@@ -1,0 +1,181 @@
+
+  {
+    q: "What type of attack tricks users into revealing credentials by mimicking legitimate websites?",
+    options: ["Ransomware", "Phishing", "DoS Attack", "SQL Injection"],
+    answer: 1,
+    category: "Threats",
+    difficulty: "Beginner"
+  },
+  {
+    q: "Which protocol encrypts data transmitted between a browser and a web server?",
+    options: ["HTTP", "FTP", "HTTPS", "SMTP"],
+    answer: 2,
+    category: "Basics",
+    difficulty: "Beginner"
+  },
+  {
+    q: "What does 'MFA' stand for in cybersecurity?",
+    options: ["Multi-Factor Authentication", "Managed Firewall Access", "Multi-File Analysis", "Malware Filter Agent"],
+    answer: 0,
+    category: "Basics",
+    difficulty: "Beginner"
+  },
+  {
+    q: "What is the name for software that secretly records keystrokes?",
+    options: ["Spyware", "Ransomware", "Keylogger", "Adware"],
+    answer: 2,
+    category: "Malware",
+    difficulty: "Intermediate"
+  },
+  {
+    q: "A firewall primarily operates at which layer to filter traffic?",
+    options: ["Application", "Network", "Physical", "Session"],
+    answer: 1,
+    category: "Network",
+    difficulty: "Intermediate"
+  },
+  {
+    q: "What does 'zero-day vulnerability' mean?",
+    options: ["A flaw with no known exploit", "A flaw unknown to the vendor with no patch yet", "A vulnerability fixed within 0 days", "A critical server outage"],
+    answer: 1,
+    category: "Threats",
+    difficulty: "Intermediate"
+  },
+  {
+    q: "Which hashing algorithm is considered cryptographically broken and should NOT be used?",
+    options: ["SHA-256", "bcrypt", "MD5", "Argon2"],
+    answer: 2,
+    category: "Cryptography",
+    difficulty: "Intermediate"
+  },
+  {
+    q: "What type of malware encrypts a victim's files and demands payment?",
+    options: ["Trojan", "Worm", "Ransomware", "Rootkit"],
+    answer: 2,
+    category: "Malware",
+    difficulty: "Beginner"
+  },
+  {
+    q: "In a SQL injection attack, what is the attacker targeting?",
+    options: ["Web server memory", "Database queries", "Network bandwidth", "SSL certificates"],
+    answer: 1,
+    category: "Threats",
+    difficulty: "Intermediate"
+  },
+  {
+    q: "What is the principle of 'least privilege'?",
+    options: [
+      "Users get maximum access for productivity",
+      "Admin accounts are shared among a team",
+      "Users are given only the minimum access rights needed",
+      "Privileges are rotated every month"
+    ],
+    answer: 2,
+    category: "Basics",
+    difficulty: "Beginner"
+  }
+
+
+yaha se dashboard m add krna hai
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h2 id="usersCount">0</h2>
+            <p>Total Users</p>
+        </div>
+
+        <div class="card">
+            <h2 id="attemptsCount">0</h2>
+            <p>Quiz Attempts</p>
+        </div>
+
+        <div class="card">
+            <h2 id="highestScore">0%</h2>
+            <p>Highest Score</p>
+        </div>
+
+        <div class="card">
+            <h2 id="averageScore">0%</h2>
+            <p>Average Score</p>
+        </div>
+
+    </div>
+    <h2>Registered Users</h2>
+
+<div class="table-section">
+
+    <h2>Registered Users</h2>
+
+    <table class="users-table">
+
+        <thead>
+            <tr>
+                <th>UID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+
+        <tbody id="usersTableBody">
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<h2>Add New Question</h2>
+
+<form id="questionForm">
+
+    <input type="text"
+        id="section"
+        placeholder="Section (MCQ, True/False, Scenario)"
+        required>
+
+    <textarea
+        id="question"
+        placeholder="Question"
+        required></textarea>
+
+    <input type="text" id="option1" placeholder="Option 1" required>
+    <input type="text" id="option2" placeholder="Option 2" required>
+    <input type="text" id="option3" placeholder="Option 3">
+    <input type="text" id="option4" placeholder="Option 4">
+
+    <input type="text"
+        id="answer_index"
+        placeholder="Correct Answer"
+        required>
+        <input type="text" id="category" placeholder="Category">
+<select id="difficulty">
+    <option>Beginner</option>
+    <option>Intermediate</option>
+    <option>Advanced</option>
+</select>
+
+    <button type="submit">
+        Add Question
+    </button>
+
+    
+
+<div class="analytics-section">
+
+    <h2>User Analytics</h2>
+
+    <input
+        type="text"
+        id="uidInput"
+        placeholder="Enter User UID">
+
+    <button id="searchUserBtn" onclick="searchUserAnalytics()">
+        Search
+    </button>
+
+</div>
+
+<div id="analyticsResult"></div>
+</form>

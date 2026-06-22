@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Analytics · CyberAware</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --navy-950: #060c1f;
+            --navy-900: #0b1330;
+            --navy-800: #121b3d;
+            --navy-700: #1c2a55;
+            --blue-600: #2f6fed;
+            --blue-700: #2459cc;
+            --blue-100: #e8effe;
+            --slate-50: #f3f5fa;
+            --slate-100: #eef1f7;
+            --slate-200: #e1e6ef;
+            --slate-300: #cbd3e1;
+            --slate-400: #98a2b8;
+            --slate-500: #6b7589;
+            --slate-700: #384258;
+            --slate-900: #161d2e;
+            --green-600: #16a360;
+            --green-100: #e4f7ed;
+            --white: #ffffff;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, .06);
+            --shadow-md: 0 10px 28px rgba(15, 23, 42, .08);
+            --shadow-lg: 0 18px 44px rgba(15, 23, 42, .14);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--slate-50);
+            font-family: "Inter", "Segoe UI", sans-serif;
+            color: var(--slate-900);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Sora", "Segoe UI", sans-serif;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--blue-600);
+            outline-offset: 2px;
+        }
+
+        /* App header */
+
+        /* Page shell */
+        .dashboard {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 32px 40px 64px;
+        }
+
+        .section-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .section-eyebrow svg {
+            width: 18px;
+            height: 18px;
+            color: var(--blue-600);
+            flex-shrink: 0;
+        }
+
+        .section-eyebrow h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--navy-900);
+        }
+
+        /* Top row: search + filter */
+        .top-row {
+            display: flex;
+            gap: 24px;
+            align-items: stretch;
+            margin-bottom: 28px;
+        }
+
+        .analytics-section,
+        .analytics-filter {
+            background: var(--white);
+            padding: 26px 28px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-md);
+        }
+
+        .analytics-section {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .analytics-filter {
+            flex: 1.5;
+            margin-top: 0;
+        }
+
+        .analytics-section input,
+        .filter-row input {
+            font-family: "Inter", sans-serif;
+            padding: 11px 14px;
+            border: 1.5px solid var(--slate-200);
+            border-radius: var(--radius-sm);
+            outline: none;
+            font-size: 14px;
+            color: var(--slate-900);
+            background: var(--slate-50);
+            transition: border-color .15s, box-shadow .15s, background .15s;
+        }
+
+        .analytics-section input {
+            width: 280px;
+        }
+
+        .analytics-section input:focus,
+        .filter-row input:focus {
+            border-color: var(--blue-600);
+            background: var(--white);
+            box-shadow: 0 0 0 3px var(--blue-100);
+        }
+
+        .analytics-section button,
+        .filter-row button {
+            font-family: "Inter", sans-serif;
+            padding: 11px 20px;
+            border: none;
+            background: var(--blue-600);
+            color: var(--white);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background .15s, transform .1s, box-shadow .15s;
+            box-shadow: 0 1px 2px rgba(47, 111, 237, .35);
+        }
+
+        .analytics-section button:hover,
+        .filter-row button:hover {
+            background: var(--blue-700);
+            transform: translateY(-1px);
+        }
+
+        .analytics-section button:active,
+        .filter-row button:active {
+            transform: translateY(0);
+        }
+
+        /* User Card (generated by JS) */
+        .user-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 26px 28px;
+            margin-top: 20px;
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-card h3 {
+            color: var(--navy-900);
+            margin-bottom: 14px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .user-card p {
+            margin: 8px 0;
+            color: var(--slate-700);
+            font-size: 14px;
+        }
+
+        .user-card p strong {
+            color: var(--slate-900);
+            font-weight: 600;
+        }
+
+        .user-card hr {
+            margin: 16px 0;
+            border: none;
+            border-top: 1px solid var(--slate-200);
+        }
+
+        /* Stats Grid (generated by JS) */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .stat-card {
+            position: relative;
+            background: var(--white);
+            color: var(--navy-900);
+            padding: 20px 18px 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--slate-200);
+            border-left: 4px solid var(--blue-600);
+            text-align: left;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-card h4 {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--slate-500);
+            margin-bottom: 10px;
+        }
+
+        .stat-card span {
+            font-size: 28px;
+            font-weight: 700;
+            font-family: "Sora", sans-serif;
+            color: var(--navy-900);
+        }
+
+        /* History table (generated by JS) */
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 26px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-md);
+        }
+
+        .history-table th {
+            background: var(--navy-900);
+            color: var(--white);
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .history-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--slate-100);
+            font-size: 14px;
+            color: var(--slate-700);
+        }
+
+        .history-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .history-table tr:hover td {
+            background: var(--slate-50);
+        }
+
+        /* Analytics Filter Section */
+        .analytics-filter h2 {
+            color: var(--navy-900);
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .filter-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: nowrap;
+        }
+
+        .filter-row label {
+            font-weight: 600;
+            color: var(--slate-700);
+            font-size: 13px;
+        }
+
+        /* Analytics Summary (generated by JS) */
+        #analyticsBox {
+            margin-top: 24px;
+        }
+
+        .analytics-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .analytics-card {
+            position: relative;
+            background: var(--white);
+            padding: 26px 22px 22px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-md);
+            transition: transform .18s, box-shadow .18s;
+        }
+
+        .analytics-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .analytics-card h3 {
+            font-size: 32px;
+            color: var(--navy-900);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .analytics-card p {
+            color: var(--slate-500);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        /* Users Attempted Table */
+        .analytics-table-section {
+            background: var(--white);
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-md);
+        }
+
+        .analytics-table-section h2 {
+            margin-bottom: 15px;
+            color: var(--navy-900);
+        }
+
+        .analytics-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .analytics-table th {
+            background: var(--navy-900);
+            color: var(--white);
+            padding: 14px;
+            text-align: left;
+        }
+
+        .analytics-table td {
+            padding: 14px;
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .analytics-table tr:hover {
+            background: var(--slate-50);
+        }
+
+        /* Top performer badge (reserved for highlighting standout scores) */
+        .top-user {
+            color: var(--green-600);
+            font-weight: 700;
+        }
+
+        /* Users table section */
+        .table-section {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-lg);
+            margin-top: 28px;
+        }
+
+        .table-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700)) !important;
+            color: var(--white) !important;
+            padding: 22px 26px !important;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .table-header h2 {
+            font-size: 17px;
+        }
+
+        .table-header button {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .table-container {
+            display: none;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .users-table th {
+            background: var(--slate-50);
+            color: var(--slate-700);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 2px solid var(--slate-200);
+        }
+
+        .users-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--slate-100);
+            font-size: 14px;
+            color: var(--slate-700);
+        }
+
+        .users-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .users-table tr:hover {
+            background: var(--blue-100);
+            transition: background .15s;
+        }
+
+        /* Empty state for the attempts table */
+        .users-table tbody:empty::after,
+        #attemptedUsersBody:empty::after {
+            content: "";
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .dashboard {
+                padding: 28px 20px 50px;
+            }
+
+            .app-header {
+                padding: 22px 24px;
+            }
+
+            .top-row {
+                flex-direction: column;
+            }
+
+            .filter-row {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .analytics-section input {
+                width: 100%;
+            }
+
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .analytics-section button,
+            .filter-row button {
+                width: 100%;
+                margin-left: 0;
+                justify-content: center;
+            }
+
+            .analytics-table,
+            .history-table,
+            .users-table {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <main class="dashboard">
+
+        <div class="top-row">
+
+            <div class="analytics-section">
+                <div class="section-eyebrow">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <h2>User Analytics</h2>
+                </div>
+
+                <input type="text" id="searchInput" placeholder="Enter Email">
+
+                <button id="searchUserBtn" onclick="searchUserAnalytics()">
+                    Search
+                </button>
+            </div>
+
+            <div class="analytics-filter">
+                <div class="section-eyebrow">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                    <h2>User Activity Analytics</h2>
+                </div>
+
+                <div class="filter-row">
+                    <label>From:</label>
+                    <input type="date" id="fromDate">
+
+                    <label>To:</label>
+                    <input type="date" id="toDate">
+
+                    <button onclick="getAnalytics()">
+                        Generate Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="analyticsResult"></div>
+        <div id="analyticsBox">
+            <!-- Analytics Summary Here -->
+        </div>
+
+        <div class="table-section" id="attemptedUsersSection" style="display:none;">
+
+            <h2>Users Who Attempted Quiz</h2>
+
+            <table class="users-table">
+
+                <thead>
+                    <tr>
+                        <th>S.No.</th>
+                        <th>UID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Attempts</th>
+                        <th>Average Score</th>
+                        <th>Highest Score</th>
+                    </tr>
+                </thead>
+
+                <tbody id="attemptedUsersBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+    <script>
+        document
+            .getElementById("searchUserBtn")
+            .addEventListener(
+                "click",
+                searchUserAnalytics
+            );
+
+        async function searchUserAnalytics() {
+
+            const searchValue =
+                document.getElementById("searchInput")
+                    .value
+                    .trim();
+
+            if (!searchValue) {
+                alert("Enter UID or Email");
+                return;
+            }
+
+            try {
+
+                const response = await fetch(
+                    `http://localhost:5250/api/admin/user-analytics/${encodeURIComponent(searchValue)}`
+                );
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    alert(data.message);
+                    return;
+                }
+
+                let historyHTML = `
+<h3 style="margin-top:25px">
+    Quiz History
+</h3>
+
+<table class="history-table">
+<tr>
+    <th>Date</th>
+    <th>Score</th>
+</tr>
+`;
+                if (data.history && data.history.length > 0) {
+
+                    data.history.forEach(item => {
+
+                        historyHTML += `
+        <tr>
+            <td>${new Date(item.completed_at).toLocaleDateString()}</td>
+            <td>${item.percentage}%</td>
+        </tr>
+        `;
+                    });
+
+                } else {
+
+                    historyHTML += `
+    <tr>
+        <td colspan="2">No quiz history found</td>
+    </tr>
+    `;
+                }
+
+                historyHTML += "</table>";
+                document.getElementById(
+                    "analyticsResult"
+                ).innerHTML = `
+                 
+
+        </table>
+<div class="user-card">
+
+    <h3>👤 ${data.name}</h3>
+
+    <p><strong>UID:</strong> ${data.uid}</p>
+
+    <p><strong>Email:</strong> ${data.email}</p>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h4>Total Attempts</h4>
+            <span>${data.totalAttempts}</span>
+        </div>
+
+        <div class="stat-card">
+            <h4>Average Score</h4>
+            <span>${data.averageScore}%</span>
+        </div>
+
+        <div class="stat-card">
+            <h4>Highest Score</h4>
+            <span>${data.highestScore}%</span>
+        </div>
+
+    </div>
+
+</div>
+
+${historyHTML}
+`;
+
+            }
+            catch (error) {
+                console.error(error);
+                alert(error.message);
+            }
+        }
+
+
+        async function getAnalytics() {
+
+            const from =
+                document.getElementById(
+                    "fromDate"
+                ).value;
+
+            const to =
+                document.getElementById(
+                    "toDate"
+                ).value;
+
+            if (!from || !to) {
+
+                alert(
+                    "Please select both dates"
+                );
+
+                return;
+            }
+
+            try {
+
+                const response = await fetch(
+                    `http://localhost:5250/api/admin/analytics/range?from=${from}&to=${to}`
+                );
+
+                const data =
+                    await response.json();
+
+                if (!data.success) {
+
+                    alert(
+                        "Failed to load analytics"
+                    );
+
+                    return;
+                }
+
+                /* Analytics Summary */
+
+                document.getElementById(
+                    "analyticsBox"
+                ).innerHTML = `
+
+        <div class="analytics-cards">
+
+            <div class="analytics-card">
+                <h3>
+                    ${data.analytics.totalAttempts}
+                </h3>
+                <p>Total Attempts</p>
+            </div>
+
+            <div class="analytics-card">
+                <h3>
+                    ${data.analytics.uniqueUsers}
+                </h3>
+                <p>Unique Users</p>
+            </div>
+
+            <div class="analytics-card">
+                <h3>
+                    ${data.analytics.averageScore}%
+                </h3>
+                <p>Average Score</p>
+            </div>
+
+            <div class="analytics-card">
+                <h3>
+                    ${data.analytics.highestScore}%
+                </h3>
+                <p>Highest Score</p>
+            </div>
+
+        </div>
+        `;
+
+                /* Users Table */
+
+                const tbody =
+                    document.getElementById(
+                        "attemptedUsersBody"
+                    );
+
+                tbody.innerHTML = "";
+
+                data.users.forEach(
+                    (user, index) => {
+
+                        tbody.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        ${user.uid}
+                    </td>
+
+                    <td>
+                        ${user.full_name}
+                    </td>
+
+                    <td>
+                        ${user.email}
+                    </td>
+
+                    <td>
+                        ${user.attempts}
+                    </td>
+
+                    <td>
+                        ${user.averageScore}%
+                    </td>
+
+                    <td>
+                        ${user.highestScore}%
+                    </td>
+
+                </tr>
+
+                `;
+                    }
+                );
+
+                document.getElementById(
+                    "attemptedUsersSection"
+                ).style.display = "block";
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Server Error"
+                );
+            }
+        }
+    </script>
+</body>
+
+</html>

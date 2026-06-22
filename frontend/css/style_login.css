@@ -1,0 +1,398 @@
+/* ==========================================
+   CYBERAWARE DASHBOARD THEME
+   Matches Landing Page Design
+========================================== */
+
+:root {
+    --bg-main: #FFFDF2;
+    --bg-secondary: #F5F1E6;
+    --bg-card: #FFFFFF;
+
+    --primary: #000000;
+    --secondary: #8B6B3D;
+
+    --text: #000000;
+    --text-muted: #666666;
+
+    --border: rgba(0, 0, 0, .08);
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, .06);
+
+    --radius: 18px;
+}
+
+/* ==========================
+   BODY
+========================== */
+
+body {
+    background: var(--bg-main);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.navbar {
+    height: 80px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(255, 253, 242, .85);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid var(--border);
+
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+}
+
+.logo-wrapper {
+    width: 45px;
+    height: 45px;
+
+    background: #000;
+
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-wrapper svg {
+    width: 24px;
+    height: 24px;
+    fill: #FFFDF2;
+}
+
+.logo-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #000;
+}
+
+/* ==========================
+   SEARCH
+========================== */
+
+.search-box {
+    position: relative;
+    width: 400px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 50px 14px 18px;
+
+    border-radius: 50px;
+    border: 1px solid var(--border);
+
+    background: #fff;
+
+    color: #000;
+    font-size: .95rem;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #8B6B3D;
+}
+
+.search-box svg {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8B6B3D;
+}
+
+/* ==========================
+   PROFILE
+========================== */
+
+.nav-icons {
+    position: relative;
+}
+
+.user-profile-trigger {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #fff;
+    border: 1px solid var(--border);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.user-profile-trigger:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.user-profile-trigger svg {
+    width: 22px;
+    height: 22px;
+    color: #8B6B3D;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 60px;
+
+    width: 280px;
+
+    background: #fff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    padding: 20px;
+
+    display: none;
+}
+
+.profile-dropdown.active {
+    display: block;
+}
+
+.profile-dropdown h3 {
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.profile-info-item {
+    margin-bottom: 14px;
+}
+
+.profile-info-label {
+    color: #888;
+    font-size: .85rem;
+}
+
+.profile-info-val {
+    color: #000;
+    font-weight: 600;
+}
+
+.profile-badge {
+    display: inline-block;
+
+    background: #F5F1E6;
+
+    color: #8B6B3D;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    font-weight: 600;
+}
+
+/* ==========================
+   MAIN LAYOUT
+========================== */
+
+.container {
+    display: flex;
+    height: calc(100vh - 80px);
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar {
+    width: 280px;
+
+    background: #F5F1E6;
+
+    border-right: 1px solid var(--border);
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ==========================
+   MENU BUTTONS
+========================== */
+
+.menu-btn {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px 18px;
+
+    border: none;
+
+    background: transparent;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    color: #444;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    transition: .3s ease;
+}
+
+.menu-btn svg {
+    width: 22px;
+    height: 22px;
+
+    stroke: #8B6B3D;
+    fill: none;
+    stroke-width: 2;
+}
+
+.menu-btn:hover {
+    background: #fff;
+    transform: translateX(5px);
+}
+
+.menu-btn.active {
+    background: #000;
+    color: #FFFDF2;
+}
+
+.menu-btn.active svg {
+    stroke: #FFFDF2;
+}
+
+/* Logout */
+
+.logout {
+    margin-top: auto;
+}
+
+.logout:hover {
+    background: #fcd0d0;
+}
+
+/* ==========================
+   CONTENT
+========================== */
+
+.content {
+    flex: 1;
+    padding: 25px;
+
+    background: #FFFDF2;
+}
+
+.mainframe-wrapper {
+    width: 100%;
+    height: 100%;
+
+    background: #fff;
+
+    border-radius: 20px;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+#contentFrame {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    background: #fff;
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8B6B3D;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:992px) {
+
+
+    .search-box {
+        width: 250px;
+    }
+
+    .sidebar {
+        width: 230px;
+    }
+}
+
+@media(max-width:768px) {
+
+    .search-box {
+        display: none;
+    }
+
+    .sidebar {
+        width: 80px;
+    }
+
+    .menu-btn span {
+        display: none;
+    }
+
+    .menu-btn {
+        justify-content: center;
+    }
+
+
+}

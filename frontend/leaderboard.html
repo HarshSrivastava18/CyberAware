@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        .leaderboard-section {
+    background: #fff;
+    border-radius: 15px;
+    margin-top: 25px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.leaderboard-header {
+    background: linear-gradient(
+        135deg,
+        #3f85e2bb,
+        #1437e4
+    );
+    color: rgb(0, 0, 0);
+    padding: 20px;
+}
+
+.leaderboard-header h2 {
+    margin: 0;
+}
+
+.leaderboard-container {
+    padding: 20px;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leaderboard-table th {
+    background: #ffffff;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.leaderboard-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.leaderboard-table tr:hover {
+    background: #f9fafb;
+}
+
+/* Top 3 */
+.rank-1 {
+    background: rgba(192, 181, 117, 0.15);
+}
+
+.rank-2 {
+    background: rgba(192,192,192,.15);
+}
+
+.rank-3 {
+    background: rgba(133, 101, 68, 0.15);
+}
+
+.medal {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.score-badge {
+    background: #2e6303;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+}
+
+.modal-content {
+    background: white;
+    width: 80%;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 12px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close-btn {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    background: #eef4ff !important;
+}
+    </style>
+</head>
+<body>
+    <div class="leaderboard-section">
+
+    <div class="leaderboard-header">
+        <h2>🏆 Leaderboard</h2>
+    </div>
+
+    <div class="leaderboard-container">
+
+        <table class="leaderboard-table">
+
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>UID</th>
+                    <th>Highest Score</th>
+                    <th>Attempts</th>
+                </tr>
+            </thead>
+
+            <tbody id="leaderboardBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<!-- Attempt History Modal -->
+<div id="attemptModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+
+        <h2>User Attempt History</h2>
+
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Attempt #</th>
+                    <th>Score (%)</th>
+                </tr>
+            </thead>
+
+            <tbody id="attemptHistoryBody"></tbody>
+        </table>
+    </div>
+</div>
+<script>
+document
+    .querySelector(".close-btn")
+    .addEventListener(
+        "click",
+        () => {
+
+            document.getElementById(
+                "attemptModal"
+            ).style.display = "none";
+
+        }
+    );
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById(
+            "attemptModal"
+        );
+
+    if (event.target === modal) {
+
+        modal.style.display =
+            "none";
+
+    }
+};
+
+   async function loadLeaderboard() {
+    try {
+
+        const response = await fetch(
+            "http://localhost:5250/api/admin/leaderboard"
+        );
+
+        const result = await response.json();
+
+        if (!result.success) {
+            throw new Error(result.message);
+        }
+
+        const tbody =
+            document.getElementById(
+                "leaderboardBody"
+            );
+
+        tbody.innerHTML = "";
+
+        result.leaderboard.forEach(
+            (user, index) => {
+
+                let medal = "";
+
+                if (index === 0)
+                    medal = "🥇";
+                else if (index === 1)
+                    medal = "🥈";
+                else if (index === 2)
+                    medal = "🥉";
+                else
+                    medal = index + 1;
+
+                tbody.innerHTML += `
+             <tr
+    class="rank-${index + 1} clickable-row"
+    onclick="showUserAttempts('${user.uid}')"
+>
+                    <td>${medal}</td>
+                    <td>${user.full_name}</td>
+                    <td>${user.uid}</td>
+                    <td>
+                        <span class="score-badge">
+                            ${user.highestScore}%
+                        </span>
+                    </td>
+                    <td>${user.attempts}</td>
+                </tr>
+                `;
+            }
+        );
+
+    } catch (err) {
+        console.error(
+            "Leaderboard Error:",
+            err
+        );
+    }
+}
+
+async function showUserAttempts(uid) {
+console.log("Clicked UID:", uid);
+    try {
+
+        const response = await fetch(
+            `http://localhost:5250/api/admin/user-attempts/${uid}`
+        );
+
+        const result = await response.json();
+
+        if (!result.success) {
+            throw new Error(result.message);
+        }
+
+        const body =
+            document.getElementById(
+                "attemptHistoryBody"
+            );
+
+        body.innerHTML = "";
+
+        result.attempts.forEach(
+            (attempt, index) => {
+
+                body.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${attempt.percentage}%</td>
+                </tr>
+                `;
+            }
+        );
+
+        document.getElementById(
+            "attemptModal"
+        ).style.display = "block";
+
+    } catch (err) {
+
+        console.error(
+            "Attempt History Error:",
+            err
+        );
+
+    }
+}
+
+loadLeaderboard();
+</script>
+</body>
+</html>

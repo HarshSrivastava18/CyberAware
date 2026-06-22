@@ -1,0 +1,133 @@
+<style>
+    .admin-login-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:linear-gradient(
+        135deg,
+        #0A192F,
+        #112240
+    );
+}
+
+.admin-card{
+    width:100%;
+    max-width:420px;
+    background:#fff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.admin-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.admin-icon{
+    width:70px;
+    height:70px;
+    margin:auto;
+    margin-bottom:15px;
+    border-radius:16px;
+    background:linear-gradient(
+        135deg,
+        #112240,
+        #64B5F6
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+}
+
+.admin-header h2{
+    margin-bottom:8px;
+    color:#0A192F;
+}
+
+.admin-header p{
+    color:#6b7280;
+}
+
+#adminLoginForm{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+#adminLoginForm input{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #d8e3f5;
+    border-radius:12px;
+    font-size:15px;
+    transition:.3s;
+}
+
+#adminLoginForm input:focus{
+    outline:none;
+    border-color:#64B5F6;
+    box-shadow:0 0 0 4px rgba(100,181,246,.15);
+}
+
+#adminLoginForm button{
+    border:none;
+    cursor:pointer;
+    padding:15px;
+    border-radius:12px;
+    font-weight:700;
+    color:#fff;
+    background:linear-gradient(
+        135deg,
+        #112240,
+        #64B5F6
+    );
+    transition:.3s;
+}
+
+#adminLoginForm button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(100,181,246,.35);
+}
+</style>
+<div class="admin-login-page">
+
+    <div class="admin-card">
+
+        <div class="admin-header">
+            <div class="admin-icon">
+                🛡️
+            </div>
+
+            <h2>Admin Panel</h2>
+            <p>Login to access dashboard</p>
+        </div>
+
+        <form id="adminLoginForm">
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                required>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/admin-login.js"></script>
