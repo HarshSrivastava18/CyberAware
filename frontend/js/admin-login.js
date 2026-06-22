@@ -9,7 +9,7 @@ document.getElementById("adminLoginForm").addEventListener("submit", async e => 
         document.getElementById("password").value;
 
     const response = await fetch(
-        "http://localhost:5250/api/admin/login",
+        "https://cyberaware-vnpf.onrender.com/api/admin/login",
         {
             method: "POST",
             headers: {

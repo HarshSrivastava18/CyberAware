@@ -21,7 +21,7 @@ document.getElementById("signupForm").addEventListener("submit", async function 
     try {
 
         const response = await fetch(
-            "http://localhost:5250/api/auth/register",
+            "https://cyberaware-vnpf.onrender.com/api/auth/register",
             {
                 method: "POST",
                 headers: {

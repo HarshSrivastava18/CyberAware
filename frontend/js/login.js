@@ -5,7 +5,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const password = document.getElementById("loginPassword").value.trim();
     const submitBtn = document.getElementById("loginBtn");
     try {
-        const response = await fetch("http://localhost:5250/api/auth/login", {
+        const response = await fetch("https://cyberaware-vnpf.onrender.com/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -142,7 +142,7 @@ function finishQuiz() {
         wrong_answers: wrong
     };
 
-    fetch("http://localhost:5250/api/quiz/result", {
+    fetch("https://cyberaware-vnpf.onrender.com/api/quiz/result", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -199,7 +199,7 @@ async function loadQuestions() {
     try {
 
         const response = await fetch(
-            "http://localhost:5250/api/quiz/questions"
+            "https://cyberaware-vnpf.onrender.com/api/quiz/questions"
         );
 
         QUESTIONS = await response.json();

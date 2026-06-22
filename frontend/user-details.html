@@ -632,7 +632,7 @@
             try {
 
                 const response = await fetch(
-                    `http://localhost:5250/api/admin/user-analytics/${encodeURIComponent(searchValue)}`
+                    `https://cyberaware-vnpf.onrender.com/api/admin/user-analytics/${encodeURIComponent(searchValue)}`
                 );
 
                 const data = await response.json();
@@ -745,7 +745,7 @@ ${historyHTML}
             try {
 
                 const response = await fetch(
-                    `http://localhost:5250/api/admin/analytics/range?from=${from}&to=${to}`
+                    `https://cyberaware-vnpf.onrender.com/api/admin/analytics/range?from=${from}&to=${to}`
                 );
 
                 const data =

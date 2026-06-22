@@ -440,7 +440,7 @@ body {
                     };
                     console.log(questionData);
                     const response = await fetch(
-                        "http://localhost:5250/api/admin/questions",
+                        "https://cyberaware-vnpf.onrender.com/api/admin/questions",
                         {
                             method: "POST",
                             headers: {
@@ -465,7 +465,7 @@ body {
 
                     const response =
                         await fetch(
-                            "http://localhost:5250/api/admin/questions"
+                            "https://cyberaware-vnpf.onrender.com/api/admin/questions"
                         );
 
                     const data =
@@ -547,7 +547,7 @@ body {
 
                     const response =
                         await fetch(
-                            `http://localhost:5250/api/admin/questions/${id}`,
+                            `https://cyberaware-vnpf.onrender.com/api/admin/questions/${id}`,
                             {
                                 method: "DELETE"
                             }
@@ -664,7 +664,7 @@ body {
 
                 const response =
                     await fetch(
-                        `http://localhost:5250/api/admin/questions/${id}`,
+                        `https://cyberaware-vnpf.onrender.com/api/admin/questions/${id}`,
                         {
                             method: "PUT",
 
@@ -693,7 +693,7 @@ body {
         document.getElementById("questionLimit").value;
 
     const response = await fetch(
-        "http://localhost:5250/api/admin/settings/question-limit",
+        "https://cyberaware-vnpf.onrender.com/api/admin/settings/question-limit",
         {
             method: "POST",
             headers: {

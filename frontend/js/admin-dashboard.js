@@ -36,7 +36,7 @@ document.getElementById(
 
         const response =
             await fetch(
-                "http://localhost:5250/api/admin/stats"
+                "https://cyberaware-vnpf.onrender.com/api/admin/stats"
             );
 
         const data =
@@ -77,7 +77,7 @@ async function loadUsers() {
     try {
 
         const response = await fetch(
-            "http://localhost:5250/api/admin/users"
+            "https://cyberaware-vnpf.onrender.com/api/admin/users"
         );
 
         const users = await response.json();
@@ -147,7 +147,7 @@ document
         };
         console.log(questionData);
         const response = await fetch(
-            "http://localhost:5250/api/admin/questions",
+            "https://cyberaware-vnpf.onrender.com/api/admin/questions",
             {
                 method: "POST",
                 headers: {
@@ -190,7 +190,7 @@ async function searchUserAnalytics() {
 
         const response =
             await fetch(
-                `http://localhost:5250/api/admin/user-analytics/${uid}`
+                `https://cyberaware-vnpf.onrender.com/api/admin/user-analytics/${uid}`
             );
 
         const data =

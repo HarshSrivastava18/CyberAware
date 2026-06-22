@@ -197,7 +197,7 @@ window.onclick = function(event) {
     try {
 
         const response = await fetch(
-            "http://localhost:5250/api/admin/leaderboard"
+            "https://cyberaware-vnpf.onrender.com/api/admin/leaderboard"
         );
 
         const result = await response.json();
@@ -259,7 +259,7 @@ console.log("Clicked UID:", uid);
     try {
 
         const response = await fetch(
-            `http://localhost:5250/api/admin/user-attempts/${uid}`
+            `https://cyberaware-vnpf.onrender.com/api/admin/user-attempts/${uid}`
         );
 
         const result = await response.json();
