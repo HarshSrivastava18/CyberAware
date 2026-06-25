@@ -308,7 +308,10 @@ document.addEventListener('DOMContentLoaded', () => {
             Btn.addEventListener('click', (e) => {
                 if (localStorage.getItem('isLoggedIn') !== 'true') {
                     e.preventDefault();
-                    alert('Please login or create an account to access the assessment.');
+                     authModal.classList.add("active");
+
+                loginForm.classList.remove("hidden");
+                signupForm.classList.add("hidden");
 
                 }
                 else {
