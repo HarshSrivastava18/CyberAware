@@ -80,7 +80,7 @@ exports.getQuestions = async (req, res) => {
                 q.option3,
                 q.option4
             ].filter(Boolean),
-            answer: q.answer_index,
+            answer: q.answer_index -1,
             category: q.category,
             difficulty: q.difficulty
         }));

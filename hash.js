@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
 
-bcrypt.hash("Admin@2026", 10).then(hash => {
+bcrypt.hash("admin123", 10).then(hash => {
     console.log(hash);
 });
